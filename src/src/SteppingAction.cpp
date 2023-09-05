@@ -1,9 +1,7 @@
 #include "SteppingAction.hh"
 #include "G4Turtle.hh"
 
-SteppingAction::SteppingAction() {
-    G4cout << "=== SteppingAction::SteppingAction()" << G4endl;
-}
+SteppingAction::SteppingAction() {}
 
 SteppingAction *SteppingAction::Singleton() {
     static SteppingAction *action = nullptr;

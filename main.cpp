@@ -16,8 +16,6 @@ struct rock {
 };
 
 int main(int argc, char **argv) {
-    G4cout << "=== main()" << G4endl;
-    
     const G4String modelPath("share/topography/DEM_BACKGROUND_MASAYA.png");
     const G4double azimuthMin = -180;
     const G4double azimuthMax = 180;

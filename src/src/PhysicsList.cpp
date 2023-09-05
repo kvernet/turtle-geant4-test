@@ -9,10 +9,8 @@ PhysicsList *PhysicsList::Singleton() {
     
     return physics;
 }
-PhysicsList::PhysicsList() : G4VUserPhysicsList() {
-}
-PhysicsList::~PhysicsList() {
-}
+PhysicsList::PhysicsList() : G4VUserPhysicsList() {}
+PhysicsList::~PhysicsList() {}
 void PhysicsList::DisableVerbosity() const {
     auto UImanager = G4UImanager::GetUIpointer();
     UImanager->ApplyCommand("/process/em/verbose 0");
