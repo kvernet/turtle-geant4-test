@@ -8,6 +8,7 @@ struct PrimaryGenerator : public G4VUserPrimaryGeneratorAction {
     
     /* Singleton. */
     static PrimaryGenerator *Singleton();
+    
     void GeneratePrimaries(G4Event*) override;
     
     void PrimarySetState(const G4ThreeVector position,

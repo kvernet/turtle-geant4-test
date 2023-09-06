@@ -12,5 +12,6 @@ struct DetectorConstruction : public G4VUserDetectorConstruction {
     G4VPhysicalVolume *Construct() override;
     
     G4String topoModel;
+    
     G4Turtle *turtle = nullptr;
 };

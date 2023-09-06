@@ -10,10 +10,13 @@ SteppingAction *SteppingAction::Singleton() {
     }
     return action;
 }
+
 void SteppingAction::UserSteppingAction(const G4Step *step) {
-    auto && material = step->GetPreStepPoint()->GetMaterial();
-    
-    if(material == G4Turtle::GetInstance()->GetRockMaterial()) {
+    /* Get volume of the current step */
+    G4LogicalVolume * volume = step->GetPreStepPoint()->GetTouchableHandle()
+        ->GetVolume()->GetLogicalVolume();
+
+    if(volume == G4Turtle::GetInstance()->GetRockLogicalVolume()) {
         totalLength += step->GetStepLength();
     }
 }

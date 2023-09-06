@@ -9,13 +9,17 @@ PhysicsList *PhysicsList::Singleton() {
     
     return physics;
 }
+
 PhysicsList::PhysicsList() : G4VUserPhysicsList() {}
+
 PhysicsList::~PhysicsList() {}
+
 void PhysicsList::DisableVerbosity() const {
     auto UImanager = G4UImanager::GetUIpointer();
     UImanager->ApplyCommand("/process/em/verbose 0");
     UImanager->ApplyCommand("/process/had/verbose 0");
 }
+
 void PhysicsList::ConstructParticle() {
     //this->decayPhysics->ConstructParticle();
     
@@ -26,6 +30,7 @@ void PhysicsList::ConstructParticle() {
    
     G4Geantino::GeantinoDefinition();
 }
+
 void PhysicsList::ConstructProcess() {
     AddTransportation();
 }

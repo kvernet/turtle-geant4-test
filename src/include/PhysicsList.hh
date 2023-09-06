@@ -15,5 +15,6 @@ struct PhysicsList : public G4VUserPhysicsList {
     void DisableVerbosity() const;
     
     void ConstructParticle();
+    
     void ConstructProcess();
 };

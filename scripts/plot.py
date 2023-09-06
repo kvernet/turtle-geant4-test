@@ -28,12 +28,13 @@ def plotData(data):
     #plot.style.use("share/rock.mplstyle")
     plot.figure(figsize=(12, 5))
     plot.pcolormesh(azimuth, elevation, depth.T,
-            norm=colors.LogNorm(), cmap='hot',
-            vmin=None, vmax=None)
+            norm=colors.LogNorm(1E+01, 1E+03),
+            cmap='terrain')
     
     plot.xlabel("Azimuth [deg]")
     plot.ylabel("Elevation [deg]")
     plot.colorbar()
+    plot.savefig("share/plots/g4turtle-rock.png")
     plot.show()
 
 

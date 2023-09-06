@@ -17,13 +17,12 @@ struct rock {
 
 int main(int argc, char **argv) {
     const G4String modelPath("share/topography/DEM_BACKGROUND_MASAYA.png");
-    const G4double azimuthMin = -180;
-    const G4double azimuthMax = 180;
-    const G4double elevationMin = 0;
-    const G4double elevationMax = 90;
+    const G4double azimuthMin = -180.;
+    const G4double azimuthMax = 180.;
+    const G4double elevationMin = 0.;
+    const G4double elevationMax = 90.;
     const G4double resolution = 1;
-    const G4String outputFile("rock.turtle");
-    
+    const G4String outputFile("rock.turtle");    
     
     /* Construct the default run manager */
     auto* runManager = G4RunManagerFactory::CreateRunManager(G4RunManagerType::Default);
@@ -75,10 +74,10 @@ int main(int argc, char **argv) {
             primary->PrimarySetState(position, direction, energy);
             
             action->totalLength = 0.;
-            /* Run the simulation */
+            // Run the simulation
             runManager->BeamOn(n);
             
-            /* Compute totalLength mean */
+            // Compute totalLength mean
             
             action->totalLength /= n;
             
@@ -89,7 +88,6 @@ int main(int argc, char **argv) {
             fwrite(&r, sizeof(r), 1, stream);
         }
     }
-    
     
     fclose(stream);
     

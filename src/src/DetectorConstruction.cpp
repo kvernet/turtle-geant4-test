@@ -17,6 +17,7 @@ DetectorConstruction::DetectorConstruction(const G4String& model) : topoModel(mo
     this->turtle = G4Turtle::GetInstance();
     this->turtle->SetTopographyData("", topoModel);
 }
+
 G4VPhysicalVolume *DetectorConstruction::Construct() {
     return this->turtle->GetPhysicalVolume();
 }

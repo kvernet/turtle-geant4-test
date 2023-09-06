@@ -9,9 +9,11 @@ PrimaryGenerator::PrimaryGenerator() : G4VUserPrimaryGeneratorAction() {
     const G4int n_particle = 1;
     this->particleGun = new G4ParticleGun(n_particle);
 }
+
 PrimaryGenerator::~PrimaryGenerator() {
     delete this->particleGun;
 }
+
 PrimaryGenerator *PrimaryGenerator::Singleton() {
     static PrimaryGenerator *generator = nullptr;
     if(generator == nullptr) {
@@ -19,12 +21,14 @@ PrimaryGenerator *PrimaryGenerator::Singleton() {
     }
     return generator;
 }
+
 void PrimaryGenerator::GeneratePrimaries(G4Event *anEvent) {
     this->particleGun->SetParticleDefinition(G4Geantino::GeantinoDefinition());
     
     // Create primary vertex.
     this->particleGun->GeneratePrimaryVertex(anEvent);
 }
+
 void PrimaryGenerator::PrimarySetState(const G4ThreeVector position,
         const G4ThreeVector direction, const G4double energy) {
     this->particleGun->SetParticleMomentumDirection(direction);
