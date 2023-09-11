@@ -89,7 +89,7 @@ Map metadata:
     plot.plot(projection.x, projection.y, "ro")
     
     height = layer.height(projection)
-    print(f"(x, y, z) = ({projection.x}, {projection.y}, {height:.3f})")
+    print(projection, height)
 
     plot.xlabel("longitude (deg)")
     plot.ylabel("latitude (deg)")

@@ -35,12 +35,12 @@ def mulderData(azimuth, elevation, model, density=2.65):
     """
         To get the corresponding height, use the display.py script and
         substract 100 in comparison to G4Turtle program.
-        In that case height = 517.127 - 100
+        In that case height = 517.1265225878548 - 100
     """
     position = Position(
         latitude = 11.988726,
         longitude = -86.171573,
-        height = 417.127
+        height = 417.1265225878548
     )
 
     grid = Grid(

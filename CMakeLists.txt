@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.0.0)
 project (TURTLE_GEANT4_TEST
     LANGUAGES CXX
-    VERSION 0.9
+    VERSION 0.11
 )
 
 include(ExternalProject)
