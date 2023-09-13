@@ -90,6 +90,15 @@ Map metadata:
     
     height = layer.height(projection)
     print(projection, height)
+    
+    # shadow
+    latitude = 11.988
+    longitude = -86.165
+    projection = layer.project(latitude, longitude, 500)
+    plot.plot(projection.x, projection.y, "bo")
+    
+    height = layer.height(projection)
+    print(projection, height)
 
     plot.xlabel("longitude (deg)")
     plot.ylabel("latitude (deg)")
