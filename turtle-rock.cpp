@@ -22,13 +22,14 @@ int main(int argc, char **argv) {
     const G4double elevationMin = 0.;
     const G4double elevationMax = 90.;
     const G4double resolution = 1;
-    const G4String outputFile("rock.turtle");    
+    const G4String outputFile("rock.turtle");
+    const G4bool asVolume = argc > 1;
     
     /* Construct the default run manager */
     auto* runManager = G4RunManagerFactory::CreateRunManager(G4RunManagerType::Default);
     
     /* Set mandatory initialization classes */
-    runManager->SetUserInitialization(DetectorConstruction::Singleton(modelPath));
+    runManager->SetUserInitialization(DetectorConstruction::Singleton(modelPath, asVolume));
     auto && physics = PhysicsList::Singleton();
     runManager->SetUserInitialization(physics);
     physics->DisableVerbosity();
@@ -46,10 +47,10 @@ int main(int argc, char **argv) {
     /* Position */
     double latitude = 11.988726;
     double longitude = -86.171573;
-    double height = -100;
+    double height = -100*CLHEP::m;
     
     G4ThreeVector position = G4Turtle::GetInstance()->GetECEFPosition(
-            latitude, longitude, height*CLHEP::m);
+            latitude, longitude, height);
     
     /* Energy */
     const G4double energy = 1*CLHEP::GeV;

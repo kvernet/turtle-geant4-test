@@ -4,38 +4,42 @@
 #include "G4NistManager.hh"
 
 
-DetectorConstruction *DetectorConstruction::Singleton(const G4String& model) {
+DetectorConstruction *DetectorConstruction::Singleton(
+        const G4String& model, const G4bool& shadowVolume) {
     static DetectorConstruction *detectorConstruction = nullptr;
     if(detectorConstruction == nullptr) {
-        detectorConstruction = new DetectorConstruction(model);
+        detectorConstruction = new DetectorConstruction(model, shadowVolume);
     }
     return detectorConstruction;
 }
 
-DetectorConstruction::DetectorConstruction(const G4String& model) : topoModel(model) {
+DetectorConstruction::DetectorConstruction(
+        const G4String& model, const G4bool& shadowVolume) :
+        topoModel(model), addShadowVolume(shadowVolume) {
     /* Fetch the topography */
     this->turtle = G4Turtle::GetInstance();
 }
 
 G4VPhysicalVolume *DetectorConstruction::Construct() {
-    this->turtle->SetTopographyData("", topoModel);
+    this->turtle->SetTopographyData("", this->topoModel);
     
-    G4LogicalVolume *shadowLogicalVolume = this->ShadowLogicalVolume();
-    
-    G4double latitude = 11.988 * CLHEP::deg;
-    G4double longitude = -86.165 * CLHEP::deg;
-    G4double height = -100 * CLHEP::m;
-    G4double azimuth = 0 * CLHEP::deg;
-    G4double zenith = 90 * CLHEP::deg;
-    G4double intrinsic = 0 * CLHEP::deg;
-    const G4String name = "ShadowBox";
-    
-    shadowVPlacement = this->turtle->PVPlacement(
-            latitude, longitude, height,
-            azimuth, zenith, intrinsic,
-            shadowLogicalVolume, name,
-            false, 0);
-    
+    if(this->addShadowVolume) {
+        G4LogicalVolume *shadowLogicalVolume = this->ShadowLogicalVolume();
+        
+        G4double latitude = 11.988;
+        G4double longitude = -86.165;
+        G4double height = -100 * CLHEP::m;
+        G4double azimuth = 0 * CLHEP::deg;
+        G4double zenith = 90 * CLHEP::deg;
+        G4double intrinsic = 0 * CLHEP::deg;
+        const G4String name = "ShadowBox";
+        
+        shadowVPlacement = this->turtle->PVPlacement(
+                latitude, longitude, height,
+                azimuth, zenith, intrinsic,
+                shadowLogicalVolume, name,
+                false, 0);
+    }
     return this->turtle->GetPhysicalVolume();
 }
 
