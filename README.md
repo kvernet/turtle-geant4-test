@@ -1,4 +1,4 @@
-# G4Turtle test
+# Turtle-Geant4 validation
 
 This example checks G4Turtle by computing the rock depth for a topography model (a PNG file from [share/topography/DEM_BACKGROUND_MASAYA.png]) via the G4UserSteppingAction Geant4 object.
 
