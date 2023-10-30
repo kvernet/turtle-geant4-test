@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 
+import os
+
 from mulder import Direction, Fluxmeter, Grid, Position, Layer
 import numpy
 import matplotlib.colors as colors
 import matplotlib.pyplot as plot
+
+
+os.makedirs("share/plots", exist_ok=True)
 
 DataType = numpy.dtype(
     [
@@ -129,36 +134,4 @@ if __name__ == "__main__":
                 "share/plots/turtle-rock.png"
             ])
     
-    
-    
-    plot.show()
-    
-    exit()
-    
-    
-    
-    az_range = [-180, 180]
-    el_range = [0, 90]
-    resolution = 1
-    azimuth = numpy.arange(az_range[0], az_range[1] + resolution, resolution)
-    elevation = numpy.arange(el_range[0], el_range[1] + resolution, resolution)
-    
-    density, grammage = \
-            mulder_data(azimuth=azimuth,
-                    elevation=elevation,
-                    model="share/topography/DEM_BACKGROUND_MASAYA.png")
-    
-    shape = (len(elevation), len(azimuth))
-    depth = grammage[:,0].reshape(shape) / density
-
-    plot.figure(figsize=(12, 5))
-    plot.pcolormesh(azimuth, elevation, depth,
-            norm=colors.LogNorm(1E+01, 1E+03),
-            cmap='terrain')
-        
-    plot.xlabel("Azimuth [deg]")
-    plot.ylabel("Elevation [deg]")
-    plot.colorbar()
-    plot.savefig("share/plots/turtle-rock.png")
-
     plot.show()

@@ -1,5 +1,7 @@
-bin
-build
-share/plots
+/bin
+/build
+/include
+/lib
+/share/plots
 
 *.turtle
